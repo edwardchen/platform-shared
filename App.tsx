@@ -58,4 +58,4 @@ function Home() {
   return <h2>Home</h2>;
 }
 
-exportGlobal('frontend/src/platform/App', App);
+exportGlobal('frontend/src/platform-shared/App', App);
