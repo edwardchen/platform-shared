@@ -3,7 +3,6 @@ import {
   GET_INSPECTIONS_SUCCESS,
   GET_INSPECTION_SUCCESS } from './types';
 import { networkAction } from './utils';
-import build from 'redux-object';
 
 import jsonApiMerger from '../../utils/jsonApiMerger';
 
@@ -33,7 +32,6 @@ export const getInspection = inspection_id => async (dispatch) => {
 
   try {
     InspectionsApi.get(inspection_id).then((data) => {
-      const post = build(data, 'inspection');
       const asdf = jsonApiMerger(1393, 'inspection', data, 1);
 
       networkAction(false, dispatch);
