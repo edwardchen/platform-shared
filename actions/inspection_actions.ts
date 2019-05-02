@@ -8,6 +8,7 @@ import jsonApiMerger from '../utils/jsonApiMerger';
 
 export const getInspections = user_id => async (dispatch) => {
   alert(user_id);
+
   dispatch({
     type: GET_INSPECTIONS_SUCCESS,
     payload: {},
