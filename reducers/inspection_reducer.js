@@ -15,18 +15,10 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case GET_INSPECTIONS_SUCCESS: {
-      console.log('in success');
-      const included_dict = {};
-      for (const value of action.payload.included) {
-        if (!(value.type in included_dict)) {
-          included_dict[value.type] = {};
-        }
-        included_dict[value.type][value.id] = value.attributes;
-      }
+
       return {
         ...state,
-        inspections_included: included_dict,
-        inspections_array: action.payload.inspections,
+        inspections: action.payload.inspections,
         network_error: false,
       };
     }

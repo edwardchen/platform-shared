@@ -36,6 +36,7 @@ const generateJsonApi = (version: number = 1, axiosConfig = {}) => {
   const axios = generator(version, axiosConfig);
   return class JsonApi {
     static get<T = IJsonApiResult>(url: string, params = {}, extraConfig: Partial<AxiosRequestConfig> = {}) {
+
       const config: AxiosRequestConfig = {
           headers,
           params,

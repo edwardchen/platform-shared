@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -7,7 +8,7 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 const generator = (version: number = 1, config = {}) => {
   // Common instance of axios that sets the baseUrl and csrf-token in the common headers
   const instance = axios.create({
-    baseURL: `/api/v${version}`,
+    baseURL: `http://ca3044fc.ngrok.io/api/v${version}`,
     ...config,
   });
 
@@ -17,7 +18,11 @@ const generator = (version: number = 1, config = {}) => {
   });
 
   instance.interceptors.request.use(async (request) => {
-    // console.log('Starting Request', config)
+    // console.log('Starting Request', config);
+    // console.log(request);
+    const token = await AsyncStorage.getItem('jwt_token');
+
+    request.headers.Authorization = token ? `${token}` : '';
     return request;
   });
 

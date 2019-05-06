@@ -1,25 +1,35 @@
 // import objectToFormData from 'object-to-formdata';
-import { generateJsonApi } from '../JsonApi';
+import { generateJsonApi, IJsonApiResult } from '../JsonApi';
+
+
 import { createNormalizingApi } from '../NormalizingJsonApi';
 
 const JsonApiV2 = createNormalizingApi(generateJsonApi(2));
 
+export interface ITicket {
+  id: string;
+  type: 'ticket';
+}
+
 // interface IListResult extends IJsonApiResult {
-//   data: IInspection[];
+//   data: ITicket[];
 // }
 
+interface IGetResult extends IJsonApiResult {
+  data: ITicket;
+}
 
-export default class InspectionsApi {
-  static list(config = {}) {
-    return JsonApiV2.get(`/inspections`, config);
+export default class TicketsApi {
+  static list = (config = {}): Promise<IGetResult> => {
+    return JsonApiV2.get(`/tickets`, config);
   }
   // static list = JsonApiV2.get<IListResult>('/inspections');
 
   // static get = JsonApiV2.partialCurryGet<IGetResult>((id: string | number) => `/inspections/${id}`);
 
-  static get = (id: any, params = {}) => {
-    return JsonApiV2.get(`/inspections/${id}`, params);
-  }
+  // static get = (id: any, params = {}): Promise<IGetResult> => {
+  //   return JsonApiV2.get(`/tickets/${id}`, params);
+  // }
 
   // static create = JsonApiV2.curryPost<IGetResult>('/inspections', (data: any) => objectToFormData(data));
 
@@ -33,6 +43,6 @@ export default class InspectionsApi {
       no_pagination: '1',
     };
 
-    return InspectionsApi.list(noPaginateParams);
+    return TicketsApi.list(noPaginateParams);
   }
 }
