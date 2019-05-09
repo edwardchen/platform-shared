@@ -2,13 +2,20 @@ import TicketsApi from '../utils/tickets/TicketsApi';
 // import { inlineItems } from "../utils/tickets/Inliner";
 // import { byListing } from "../utils/tickets/GroupSummaryText";
 import jsonApiMerger from '../utils/jsonApiMerger';
-import { networkAction } from './utils'
+import { networkAction } from './utils';
+import build from 'redux-object';
+
 import {
   GET_TICKETS_SUCCESS,
   GET_TICKETS_FAIL,
   GET_TICKET_SUCCESS,
   GET_TICKETS_FAIL_PERSIST
 } from './types';
+
+export interface ITicket {
+  id: string;
+  type: 'ticket';
+}
 
 export const getTickets = (user_id) => async dispatch => {
   try {
@@ -31,7 +38,6 @@ console.log('startin tickets');
       //   payload: byListing(inline_tickets)
       // });
 
-      console.log(data);
 
       const tickets: ITicket[] = data.ticket ? Object.keys(data.ticket).map(id => {
         return jsonApiMerger(id, 'ticket', data)
@@ -73,12 +79,13 @@ console.log('startin tickets');
 
 export const getTicket = (ticket_id) => async dispatch => {
   try {
-    TicketsApi.get(ticket_id).then(({ data: ticket, included }) => {
+    TicketsApi.get(ticket_id).then((data) => {
+      const ticket = build(data, 'ticket', ticket_id);
 
       networkAction(false, dispatch);
       dispatch({
         type: GET_TICKET_SUCCESS,
-        payload: { ticket, included }
+        payload: ticket
       });
     }, () => {
       console.log('no connection');

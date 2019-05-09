@@ -16,7 +16,7 @@ export interface ITicket {
 // }
 
 interface IGetResult extends IJsonApiResult {
-  data: ITicket;
+  ticket: ITicket;
 }
 
 export default class TicketsApi {
@@ -27,9 +27,9 @@ export default class TicketsApi {
 
   // static get = JsonApiV2.partialCurryGet<IGetResult>((id: string | number) => `/inspections/${id}`);
 
-  // static get = (id: any, params = {}): Promise<IGetResult> => {
-  //   return JsonApiV2.get(`/tickets/${id}`, params);
-  // }
+  static get = (id: any, params = {}): Promise<IGetResult> => {
+    return JsonApiV2.get(`/tickets/${id}`, params);
+  }
 
   // static create = JsonApiV2.curryPost<IGetResult>('/inspections', (data: any) => objectToFormData(data));
 

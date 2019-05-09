@@ -6,6 +6,7 @@ import {
 
 const INITIAL_STATE = {
   tickets: [],
+  current_ticket: null,
   selected_ticket: null,
   ticket_included: null
 };
@@ -17,17 +18,9 @@ export default function(state = INITIAL_STATE, action) {
 
       return { ...state, tickets: action.payload, network_error: false };
     case GET_TICKET_SUCCESS:
-      let included_dict = {};
-      for (let value of action.payload.included) {
-        if (!(value.type in included_dict)) {
-              included_dict[value.type] = [];
-        }
-        included_dict[value.type].push(value.attributes);
-      }
 
       return { ...state,
-        selected_ticket: action.payload.ticket,
-        ticket_included: included_dict,
+        current_ticket: action.payload,
         network_error: false };
     default:
       return state;
