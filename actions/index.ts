@@ -1,15 +1,25 @@
-import {
-    getInspections,
-    getInspection
- } from './inspection_actions';
+import { createActions } from 'redux-actions';
+import { ITicket, IInspection } from '../types';
 
-import {
-  getTickets,
-  getTicket
-} from './ticket_actions';
+const actionsMap = {
+  app: {
+    updateLoading: (isLoading: boolean): any => isLoading,
+  },
+  inspection: {
+    // Saga involved
+    getInspection: (listing_id: string): any => listing_id,
+    getInspectionComplete: (inspection: IInspection): any => inspection,
+    getInspections: (listing_id: string): any => listing_id,
+    getInspectionsComplete: (inspections: IInspection[]): any => inspections,
+  },
+  ticket: {
+    // Saga involved
+    getTicket: (ticket_id: number): any => ticket_id,
+    getTicketComplete: (ticket: ITicket): any => ticket,
+    getTickets: (user_id: number): any => user_id,
+    getTicketsComplete: (tickets: ITicket[]): any => tickets,
+  },
+};
 
-export default  {
-    getInspections,
-    getInspection,
-    getTickets,
-    getTicket };
+export default createActions(actionsMap) as typeof actionsMap;
+
