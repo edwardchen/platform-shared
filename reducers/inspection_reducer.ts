@@ -14,7 +14,6 @@ const initialState: IInspectionState = {
 
 const inspectionReducer = handleActions(
   {
-    // Saga related
     'inspection/getInspectionComplete': updateField('current_inspection'),
     'inspection/getInspectionsComplete': updateField('current_inspections'),
   },

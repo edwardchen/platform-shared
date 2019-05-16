@@ -185,20 +185,7 @@ export interface ITicket {
   unread: boolean;
   tickets_users: Array<ITicketsUser>;
   ticket_type: TicketType[];
-
 }
-
-
-// priority: TicketPriority | null;
-
-// journal_status: JournalStatus | null;
-// journal_deny_reason: string | null;
-// updated_at: string | null;
-// opened_at: string | null;
-// closed_at: string | null;
-// // ticket_type: TicketType[];
-// type: TicketModelType;
-// poc_last_message_activity: string | null;
 
 export interface IVersion {
   id: string;

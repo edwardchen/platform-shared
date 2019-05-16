@@ -6,14 +6,12 @@ const actionsMap = {
     updateLoading: (isLoading: boolean): any => isLoading,
   },
   inspection: {
-    // Saga involved
     getInspection: (listing_id: string): any => listing_id,
     getInspectionComplete: (inspection: IInspection): any => inspection,
     getInspections: (listing_id: string): any => listing_id,
     getInspectionsComplete: (inspections: IInspection[]): any => inspections,
   },
   ticket: {
-    // Saga involved
     getTicket: (ticket_id: number): any => ticket_id,
     getTicketComplete: (ticket: ITicket): any => ticket,
     getTickets: (user_id: number): any => user_id,
