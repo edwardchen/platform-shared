@@ -3,7 +3,7 @@ import {
   GET_INSPECTIONS_SUCCESS,
   GET_INSPECTION_SUCCESS } from './types';
 import { networkAction } from './utils';
-import { IInspection } from '../utils/inspections/types';
+import { IInspection } from '../utils/types';
 import jsonApiMerger from '../utils/jsonApiMerger';
 
 export interface IResult {

@@ -5,11 +5,7 @@ import { generateJsonApi, IJsonApiResult } from '../JsonApi';
 import { createNormalizingApi } from '../NormalizingJsonApi';
 
 const JsonApiV2 = createNormalizingApi(generateJsonApi(2));
-
-export interface ITicket {
-  id: string;
-  type: 'ticket';
-}
+import { ITicket } from '../types';
 
 // interface IListResult extends IJsonApiResult {
 //   data: ITicket[];
